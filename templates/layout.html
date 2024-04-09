@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Scott Says</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-link">Scott Says</a>
+        <a href="/edit" class="nav-link nav-link-right">Edit</a>
+    </nav>
+    
+    {% block content %}
+    
+    {% endblock %}
+</body>
+</html>
