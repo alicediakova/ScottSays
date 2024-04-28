@@ -14,3 +14,14 @@ document.getElementById('quoteForm').onsubmit = function(e) {
         errorMessageElement.style.display = 'block';
     }
 };
+
+$(document).ready(function() {
+    // Fetch the quote JSON from the Flask server
+    $.getJSON('/quote', function(data) {
+        // Update the text of the element with id 'quote'
+        $('#quote').text(data.quote);
+    }).fail(function() {
+        console.log("An error occurred while fetching the quote.");
+        $('#quote').text("No quote available right now.");
+    });
+});

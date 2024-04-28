@@ -87,3 +87,12 @@ button[type="submit"]:hover {
     padding-top: 0;
     color: rgb(246, 143, 130);
 }
+.scott-link {
+    color: #595959;
+    font-family: 'Merriweather', serif;
+    padding: 10px;
+    font-size: 20px;
+
+    position: absolute;
+    right: 12vw;  /* Adjust this value as needed */
+}

@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template, url_for, flash
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -16,32 +17,34 @@ def update_quote():
         # Assuming the quote is stored in a file named 'quote.json'
         with open('quote.json', 'w') as file:
             json.dump({"quote": new_quote}, file)
-        # flash('Quote updated successfully!', 'success')
 
         return redirect(url_for('home'))
     else:
         flash('Incorrect Scott-code. Please try again.', 'error')
 
         return redirect(url_for('edit'))
-    
 
 
-@app.route('/')
+
+@app.route('/', methods=['GET'])
 def home():
-    # Read the current quote from 'quote.json'
+    # Load the quote from 'quote.json'
     try:
         with open('quote.json', 'r') as file:
             quote_data = json.load(file)
-            current_quote = quote_data.get("quote", "No quote today.")  # Provide a default in case the file is empty
+            quote = quote_data.get('quote', '')
     except FileNotFoundError:
-        current_quote = "No quote today."  # Default message if 'quote.json' does not exist
+        quote = ''
 
-    # Render 'home.html' with the current quote
-    return render_template('home.html', quote=current_quote)
+    # Render the home page with the quote
+    return render_template('index.html', quote=quote)
+
+
 
 @app.route('/edit')
 def edit():
     return render_template('edit.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
